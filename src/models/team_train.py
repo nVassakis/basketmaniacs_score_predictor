@@ -28,10 +28,6 @@ def train_model():
     df['DATE'] = pd.to_datetime(df['DATE'])
     df = df.sort_values('DATE').reset_index(drop=True)
 
-    # Keep only teams active in the current season across all historical data
-    current_teams = set(df[df['DATE'] >= '2025-10-01']['TEAM'].unique())
-    df = df[df['TEAM'].isin(current_teams) & df['OPPONENT'].isin(current_teams)].reset_index(drop=True)
-
     # ---------------------------------------------------------
     # STEP 2: Define the Target (y) and Features (X)
     # ---------------------------------------------------------
@@ -72,7 +68,7 @@ def train_model():
         'max_depth': 3,
         'learning_rate': 0.05,
         'gamma': 1.0,
-        'colsample_bytree': 0.5
+        'colsample_bytree': 0.2
     }
 
     tscv = TimeSeriesSplit(n_splits=5)
