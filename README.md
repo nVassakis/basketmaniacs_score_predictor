@@ -18,7 +18,7 @@
 ## Quick Start
 
 ```bash
-git clone https://github.com/nVassakis/basketball-stats.git
+git clone https://github.com/nVassakis/basketmaniacs_score_predictor.git
 cd basketball-stats
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
