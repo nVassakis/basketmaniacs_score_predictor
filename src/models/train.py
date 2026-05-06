@@ -58,12 +58,9 @@ def train_model():
     # Train
     model.fit(X_train, y_train)
 
-    # # ---------------------------------------------------------
-    # # Train & Tune the XGBoost Model
-    # # ---------------------------------------------------------
+    # Train & Tune the XGBoost Model
     # from sklearn.model_selection import GridSearchCV
     
-    # # Define the dials to test
     # param_grid = {
     #     'max_depth': [2, 3],              
     #     'learning_rate': [0.005, 0.01],     
@@ -71,7 +68,7 @@ def train_model():
     #     'subsample': [0.7, 0.8, 0.9]   
     # }
 
-    # # Create a blank factory-default model
+    #  Create a blank factory-default model
     # base_model = xgb.XGBRegressor(random_state=234)
 
     # # Set up the automated Grid Search
