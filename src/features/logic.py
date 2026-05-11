@@ -125,7 +125,7 @@ def engineer_features():
 
     # 3. Calculate the Vacuum
     # If the team usually scores 80, but today's roster only averages 60, the vacuum is 20!
-    df['SCORING_VACUUM'] = (df['TEAM_SEASON_PPG'] - df['ACTIVE_ROSTER_POWER']).astype(float)
+    df['SCORING_VACUUM'] = df['TEAM_SEASON_PPG'] - df['ACTIVE_ROSTER_POWER']
 
     # Clean up temporary columns to keep the database tidy
     df = df.drop(columns=['team_game_total', 'ACTIVE_ROSTER_POWER', 'TEAM_SEASON_PPG'])
