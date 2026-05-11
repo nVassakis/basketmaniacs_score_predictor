@@ -31,7 +31,7 @@ def train_model():
         'AST_season_avg', 'BLK_season_avg', 'STL_season_avg','TS_PCT_last_3', 'TS_PCT_season_avg','MONTH', 'TEAM_USG_RANK'
     ]
 
-    X = df[features].apply(pd.to_numeric, errors='coerce')
+    X = df[features]
     y = df[target]
 
     # Chronological Train / Test Split
