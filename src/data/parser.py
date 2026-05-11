@@ -132,6 +132,11 @@ def run_pipeline():
         ]
         master_df = master_df[[c for c in cols_to_keep if c in master_df.columns]]
         master_df.columns = master_df.columns.str.upper()
+        if os.path.exists(OUTPUT_FILE):
+            existing_df = pd.read_csv(OUTPUT_FILE)
+            master_df = pd.concat([existing_df, master_df], ignore_index=True)
+            master_df = master_df.drop_duplicates(subset=['DATE', 'PLAYER', 'TEAM', 'MATCH'])
+
         master_df.to_csv(OUTPUT_FILE, mode='w', header=True, index=False)
         print(f"Wrote {len(all_data)} games to {OUTPUT_FILE}")
     else:
