@@ -87,6 +87,14 @@ def get_match_date(soup):
     return date_element.text.strip().split()[0]
 
 
+def get_season(soup):
+    """Return the season string (e.g. "2025-26") for the column."""
+    season_element = soup.find('span', class_='game-result__season')
+    if not season_element:
+        return None
+    return season_element.text.strip()
+
+
 def get_team_names(soup):
     """Return (home_team, away_team) using the box score table captions,
     mapped to canonical team names via team_mapping.json."""
@@ -111,6 +119,7 @@ def parse_shot_data(filepath):
         soup = BeautifulSoup(f, 'lxml')
 
     match_date = get_match_date(soup)
+    season = get_season(soup)
     home_team, away_team = get_team_names(soup)
     if match_date is None or home_team is None:
         return pd.DataFrame()
@@ -126,6 +135,7 @@ def parse_shot_data(filepath):
                 court_x, court_y = convert_coordinates(shot["raw_x"], shot["raw_y"], team_side)
                 rows.append({
                     "DATE": match_date,
+                    "SEASON": season,
                     "TEAM": team,
                     "OPPONENT": opponent,
                     "TEAM_SIDE": team_side,
